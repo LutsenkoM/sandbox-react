@@ -6,6 +6,7 @@ import App from './App';
 import ApiService from './services/api-service';
 import { ApiServiceProvider } from './components/api-service-context';
 import store from './store';
+import { Router } from 'react-router-dom';
 
 const apiService = new ApiService();
 

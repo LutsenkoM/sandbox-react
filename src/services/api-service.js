@@ -9,12 +9,22 @@ export default class ApiService {
   };
 
   postResource = async (url, data) => {
-    return await axios.post(`${this._apiBase}/${url}`, {data});
+    return await axios.post(`${this._apiBase}/${url}`, data);
   };
 
   getUsers = async () => {
     const users = await this.getResource('users');
     return users.data;
+  }
+
+  registerUser = async (data) => {
+    const user = await this.postResource('users', data);
+    return user.data;
+  }
+
+  loginUser = async (data) => {
+    const user = await this.postResource('users/login', data);
+    return user.data;
   }
 
 }

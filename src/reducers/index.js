@@ -1,18 +1,9 @@
+import { combineReducers } from 'redux';
 
-const initialState = {
-  init: []
-};
+import { users } from './users.reducer';
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'POSTS_LOADED':
-      return {
-        posts: action.payload
-      };
+const rootReducer = combineReducers({
+  users
+});
 
-    default:
-      return state;
-  }
-};
-
-export default reducer;
+export default rootReducer;
