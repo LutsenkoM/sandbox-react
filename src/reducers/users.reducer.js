@@ -1,12 +1,10 @@
 import { userConstants } from '../constants'
 
-const initUser = {
-  user: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  }
+let initUser = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: ''
 }
 
 const users = (state = initUser, action) => {
@@ -16,9 +14,7 @@ const users = (state = initUser, action) => {
       return {}
 
     case userConstants.LOGIN_REQUEST:
-      return {
-        user: action.payload
-      }
+      return action.payload
 
     default:
       return state;

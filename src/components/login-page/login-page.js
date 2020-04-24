@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import './login-page.scss';
 import { userActions } from '../../actions';
+import withApiService from '../hoc';
+import { history } from '../helpers/history';
 
 const LoginPage = ({login}) => {
 
@@ -47,8 +49,22 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {
-  login: userActions.Login
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { apiService } = ownProps;
+
+  return {
+    login: (user) => {
+      apiService.loginUser(user).then((response) => {
+        localStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.setItem('token', JSON.stringify(`Bearer ${response.token}`));
+        dispatch(userActions.Login(response.user));
+        history.push('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    }
+  }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default  withApiService()(connect(mapStateToProps, mapDispatchToProps)(LoginPage));

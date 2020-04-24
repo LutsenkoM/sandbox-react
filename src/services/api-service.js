@@ -27,4 +27,9 @@ export default class ApiService {
     return user.data;
   }
 
+  getNews = async () => {
+    const news = await this.getResource('news');
+    return news.data;
+  }
+
 }

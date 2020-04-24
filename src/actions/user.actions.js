@@ -20,24 +20,12 @@ function Register(user) {
     });
 
   return {
-    type: userConstants.REGISTER_REQUEST,
-    payload: user
+    type: userConstants.REGISTER_REQUEST
   };
 
 }
 
-function Login (user) {
-
-  apiService.loginUser(user)
-    .then((response) => {
-      localStorage.setItem('user', JSON.stringify(response.user));
-      localStorage.setItem('token', JSON.stringify(`Bearer ${response.token}`));
-      history.push('/');
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-
+function Login(user) {
   return {
     type: userConstants.LOGIN_REQUEST,
     payload: user
