@@ -4,32 +4,51 @@ export default class ApiService {
 
   _apiBase = 'http://localhost:2000';
 
-  getResource = async (url) => {
-    return await axios.get(`${this._apiBase}/${url}`);
+  _createHeader = () => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    return  {
+      'Authorization': `${token}`
+    }
+  }
+
+  _getResource = async (url) => {
+    const header = await this._createHeader();
+    return await axios.get(`${this._apiBase}/${url}`, {headers: header});
   };
 
-  postResource = async (url, data) => {
-    return await axios.post(`${this._apiBase}/${url}`, data);
+  _postResource = async (url, data) => {
+    const header = await this._createHeader();
+    return await axios.post(`${this._apiBase}/${url}`, data, {headers: header});
   };
 
   getUsers = async () => {
-    const users = await this.getResource('users');
+    const users = await this._getResource('users');
     return users.data;
   }
 
   registerUser = async (data) => {
-    const user = await this.postResource('users', data);
+    const user = await this._postResource('users', data);
     return user.data;
   }
 
   loginUser = async (data) => {
-    const user = await this.postResource('users/login', data);
+    const user = await this._postResource('users/login', data);
     return user.data;
   }
 
   getNews = async () => {
-    const news = await this.getResource('news');
+    const news = await this._getResource('news');
     return news.data;
+  }
+
+  getSingleUser = async (userId) => {
+    const singleUser = await this._getResource(`users/${userId}`);
+    return singleUser.data;
+  }
+
+  postNews = async (content) => {
+    const publishedPost = await this._postResource('news', content);
+    return publishedPost.data;
   }
 
 }

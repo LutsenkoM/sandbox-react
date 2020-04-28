@@ -4,7 +4,8 @@ import { history } from '../components/helpers/history';
 
 export const userActions = {
   Register,
-  Login
+  Login,
+  readUserProfile
 }
 
 const apiService = new ApiService();
@@ -28,7 +29,13 @@ function Register(user) {
 function Login(user) {
   return {
     type: userConstants.LOGIN_REQUEST,
-    payload: user
+    loginedUser: user
   };
 }
 
+function readUserProfile(user) {
+  return {
+    type: userConstants.READ_USERS_PROFILE,
+    readUser: user
+  }
+}

@@ -4,7 +4,8 @@ let initUser = {
   firstName: '',
   lastName: '',
   email: '',
-  password: ''
+  password: '',
+  readUser: {}
 }
 
 const users = (state = initUser, action) => {
@@ -14,10 +15,13 @@ const users = (state = initUser, action) => {
       return {}
 
     case userConstants.LOGIN_REQUEST:
-      return action.payload
+      return action.loginedUser
+
+    case userConstants.READ_USERS_PROFILE:
+      return action.readUser
 
     default:
-      return state;
+      return state
   }
 
 }

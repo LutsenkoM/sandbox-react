@@ -1,9 +1,19 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import { users } from './users.reducer';
+import { news } from './news.reducer'
+
+const persistConfig = {
+  key: 'root',
+  storage
+  // whitelist: [users]
+}
 
 const rootReducer = combineReducers({
-  users
+  users,
+  news
 });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);

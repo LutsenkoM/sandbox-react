@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './header.scss';
+import { Link } from 'react-router-dom';
 
 export default class Header extends Component{
 
@@ -7,7 +8,7 @@ export default class Header extends Component{
     return (
       <header className="header">
         <div className="container d-flex justify-content-between">
-          <span>Sandbox</span>
+          <a href="/"><h1>Sandbox</h1></a>
           <div className="user-menu">
             User menu
           </div>
