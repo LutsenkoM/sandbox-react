@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './header.scss';
-import { Link } from 'react-router-dom';
+import ProfileDropdown from './profile-dropdown/profile-dropdown'
 
 export default class Header extends Component{
 
@@ -9,9 +9,7 @@ export default class Header extends Component{
       <header className="header">
         <div className="container d-flex justify-content-between">
           <a href="/"><h1>Sandbox</h1></a>
-          <div className="user-menu">
-            User menu
-          </div>
+          <ProfileDropdown />
         </div>
       </header>
     )

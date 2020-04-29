@@ -49,8 +49,9 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('STATE HOME', state);
   return {
-    firstName: state.users.firstName,
+    firstName: state.user.firstName,
     news: state.news
   };
 };

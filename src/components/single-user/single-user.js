@@ -26,7 +26,7 @@ class SingleUser extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    readUser: state.users
+    readUser: state.readUser
   };
 };
 

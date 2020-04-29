@@ -1,15 +1,6 @@
 import { userConstants } from '../constants'
 
-let initUser = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: '',
-  readUser: {}
-}
-
-const users = (state = initUser, action) => {
-
+const user = (state = {}, action) => {
   switch (action.type) {
     case userConstants.REGISTER_REQUEST:
       return {}
@@ -17,8 +8,8 @@ const users = (state = initUser, action) => {
     case userConstants.LOGIN_REQUEST:
       return action.loginedUser
 
-    case userConstants.READ_USERS_PROFILE:
-      return action.readUser
+    case userConstants.LOGOUT_REQUEST:
+      return {}
 
     default:
       return state
@@ -26,6 +17,17 @@ const users = (state = initUser, action) => {
 
 }
 
+const readUser = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.READ_USERS_PROFILE:
+      return action.readUser
+
+    default:
+      return state
+  }
+}
+
 export {
-  users
+  user,
+  readUser
 };

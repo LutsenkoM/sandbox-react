@@ -5,6 +5,7 @@ import { history } from '../components/helpers/history';
 export const userActions = {
   Register,
   Login,
+  logOut,
   readUserProfile
 }
 
@@ -30,6 +31,13 @@ function Login(user) {
   return {
     type: userConstants.LOGIN_REQUEST,
     loginedUser: user
+  };
+}
+
+function logOut () {
+  apiService.logOutUser();
+  return {
+    type: userConstants.LOGOUT_REQUEST
   };
 }
 

@@ -36,6 +36,11 @@ export default class ApiService {
     return user.data;
   }
 
+  logOutUser = async () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+  }
+
   getNews = async () => {
     const news = await this._getResource('news');
     return news.data;

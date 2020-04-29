@@ -2,8 +2,9 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { users } from './users.reducer';
-import { news } from './news.reducer'
+import { user } from './users.reducer';
+import { readUser } from './users.reducer';
+import { news } from './news.reducer';
 
 const persistConfig = {
   key: 'root',
@@ -12,8 +13,9 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-  users,
-  news
+  user,
+  news,
+  readUser
 });
 
 export default persistReducer(persistConfig, rootReducer);

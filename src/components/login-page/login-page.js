@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component }from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -7,25 +7,31 @@ import { userActions } from '../../actions';
 import withApiService from '../hoc';
 import { history } from '../helpers/history';
 
-const LoginPage = ({login}) => {
+class LoginPage extends Component {
 
-  const LoginSubmit = (event) => {
+  constructor (props) {
+    super(props);
+    this.props.logOut();
+  }
+
+  LoginSubmit = (event) => {
     event.preventDefault();
     const user = {
       email: event.target.email.value,
       password: event.target.password.value,
     }
 
-    login(user);
+    this.props.login(user);
   }
 
+  render () {
     return (
       <div className="login-page">
         <div className="container">
           <div className="row">
             <div className="offset-3 col-6">
               <h2>Login</h2>
-              <form className="sign-up-form" onSubmit={LoginSubmit}>
+              <form className="sign-up-form" onSubmit={this.LoginSubmit}>
                 <input type="email" name="email" placeholder="Email"/>
                 <input type="password" name="password" placeholder="password"/>
                 <div className="form-group">
@@ -38,16 +44,9 @@ const LoginPage = ({login}) => {
         </div>
       </div>
     )
-}
+  }
 
-const mapStateToProps = (state) => {
-  return {
-    // firstName: state.user.firstName,
-    // lastName: state.user.lastName,
-    // email: state.user.email,
-    // password: state.user.password
-  };
-};
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { apiService } = ownProps;
@@ -63,8 +62,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       .catch((error) => {
         console.log(error);
       })
-    }
+    },
+    logOut: () => {dispatch(userActions.logOut())}
   }
 };
 
-export default  withApiService()(connect(mapStateToProps, mapDispatchToProps)(LoginPage));
+export default  withApiService()(connect(null, mapDispatchToProps)(LoginPage));
